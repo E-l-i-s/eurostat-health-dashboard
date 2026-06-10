@@ -227,8 +227,7 @@ def main():
 
     # Insert survey waves
     cur = conn.cursor()
-    waves = [(2008, "EHIS Wave 1 (2008)", 2008),
-             (2014, "EHIS Wave 2 (2014)", 2014),
+    waves = [(2014, "EHIS Wave 2 (2014)", 2014),
              (2019, "EHIS Wave 3 (2019)", 2019)]
     for w_id, desc, yr in waves:
         cur.execute(

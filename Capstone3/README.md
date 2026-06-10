@@ -36,11 +36,11 @@ All data retrieved from the official Eurostat REST API (JSON:stat format).
 
 ## Source Code
 
-GitHub repository: https://github.com/student-username/eurostat-health-dashboard
+GitHub repository: https://github.com/E-l-i-s/eurostat-health-dashboard
 
 ## Known Limitations
 
 - EHIS survey data is self-reported, introducing social desirability bias (overreporting of physical activity, underreporting of weight)
-- Only three survey waves exist (2008, 2014, 2019), limiting time-series analysis
+- Only two survey waves exist (2014, 2019), limiting time-series analysis (the 2008 EHIS wave used different dataset codes and is not included)
 - Small-cell suppression by Eurostat for confidentiality reduces available data for smaller countries and narrow demographic groups
 - Cross-country comparability depends on consistent survey administration, which may vary

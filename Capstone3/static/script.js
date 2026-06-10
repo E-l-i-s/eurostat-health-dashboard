@@ -85,6 +85,17 @@ function populateFilters() {
             countryMulti.appendChild(opt);
         });
     }
+
+    const countrySelect = document.getElementById('country-select');
+    if (countrySelect) {
+        countrySelect.innerHTML = '<option value="">All Countries</option>';
+        state.countries.forEach(c => {
+            const opt = document.createElement('option');
+            opt.value = c.country_code;
+            opt.textContent = c.country_name;
+            countrySelect.appendChild(opt);
+        });
+    }
 }
 
 // ==============================================================
@@ -99,13 +110,14 @@ async function refreshDashboard1() {
     const wave = document.getElementById('wave-select').value;
     const condition = document.getElementById('condition-select').value;
     const sex = document.getElementById('sex-select').value;
+    const countryCode = document.getElementById('country-select')?.value || '';
     try {
         await Promise.all([
             loadKPI(wave),
             loadMapData(condition, wave, sex),
             loadTopCountries(condition, wave),
             loadTrend(condition, sex),
-            loadClassificationTable(wave)
+            loadClassificationTable(wave, countryCode)
         ]);
     } catch (err) {
         console.error('Dashboard refresh failed:', err);
@@ -116,6 +128,8 @@ function setupFilterListeners1() {
     document.getElementById('wave-select').addEventListener('change', refreshDashboard1);
     document.getElementById('condition-select').addEventListener('change', refreshDashboard1);
     document.getElementById('sex-select').addEventListener('change', refreshDashboard1);
+    const countrySelect = document.getElementById('country-select');
+    if (countrySelect) countrySelect.addEventListener('change', refreshDashboard1);
 }
 
 // --- KPI ---
@@ -371,7 +385,7 @@ function renderTrendChart(data) {
 }
 
 // --- CLASSIFICATION TABLE ---
-async function loadClassificationTable(wave) {
+async function loadClassificationTable(wave, countryCode) {
     try {
         const inactivityData = await fetchJSON(`/api/map-data?indicator=${getActivityIndicator()}&wave=${wave}&sex=T`);
         const chronicData = await fetchJSON(`/api/map-data?indicator=${getChronicIndicator()}&wave=${wave}&sex=T`);
@@ -388,6 +402,7 @@ async function loadClassificationTable(wave) {
             };
         }).sort((a, b) => b.inactivity - a.inactivity);
         combined.forEach(row => {
+            if (countryCode && row.country_code !== countryCode) return;
             const tr = document.createElement('tr');
             const isHigh = isHighBurden(row.inactivity, row.chronic);
             if (isHigh) {
@@ -409,13 +424,13 @@ async function loadClassificationTable(wave) {
 
 function getActivityIndicator() {
     const select = document.getElementById('condition-select');
-    if (!select) return 'PA_INS';
-    return select.value || 'PA_INS';
+    if (!select) return 'MV_AERO_SPRT';
+    return select.value || 'MV_AERO_SPRT';
 }
 
 function getChronicIndicator() {
     const chronicItems = state.indicators.filter(i => i.category_name === 'Chronic Disease');
-    return chronicItems.length > 0 ? chronicItems[0].indicator_code : 'CD_OBESITY';
+    return chronicItems.length > 0 ? chronicItems[0].indicator_code : 'HBLPR';
 }
 
 function setupTableSearch(allData) {
@@ -441,7 +456,8 @@ async function initDashboard2() {
 }
 
 async function refreshDashboard2() {
-    const wave = document.getElementById('wave-select').value;
+    const waveA = document.getElementById('wave-select').value;
+    const waveB = document.getElementById('wave-select-b').value;
     const condition = document.getElementById('condition-select').value;
     const sex = document.getElementById('sex-select').value;
     const countryMulti = document.getElementById('country-multi');
@@ -449,10 +465,10 @@ async function refreshDashboard2() {
     const countryCode = selectedCountries.length > 0 ? selectedCountries[0] : 'DE';
     try {
         await Promise.all([
-            loadScatterPlot(condition, wave, sex),
-            loadAgeBreakdown(countryCode, condition, wave),
-            loadHeatmap(wave),
-            loadHistogram(condition, wave),
+            loadScatterPlot(condition, waveA, sex, waveB),
+            loadAgeBreakdown(countryCode, condition, waveA),
+            loadHeatmap(waveA),
+            loadHistogram(condition, waveA),
             loadStackedArea(condition)
         ]);
     } catch (err) {
@@ -466,48 +482,74 @@ function setupFilterListeners2() {
     document.getElementById('condition-select').addEventListener('change', refreshDashboard2);
     document.getElementById('sex-select').addEventListener('change', refreshDashboard2);
     document.getElementById('country-multi').addEventListener('change', refreshDashboard2);
+    document.querySelectorAll('.age-cb').forEach(cb => {
+        cb.addEventListener('change', refreshDashboard2);
+    });
 }
 
 // --- SCATTER PLOT ---
-async function loadScatterPlot(condition, wave, sex) {
+async function loadScatterPlot(condition, waveA, sex, waveB) {
     const activityCode = getActivityIndicator();
     try {
-        const data = await fetchJSON(`/api/scatter?activity=${activityCode}&condition=${condition}&wave=${wave}&sex=${sex}`);
-        renderScatterPlot(data);
+        const [dataA, dataB] = await Promise.all([
+            fetchJSON(`/api/scatter?activity=${activityCode}&condition=${condition}&wave=${waveA}&sex=${sex}`),
+            waveB && waveB !== waveA
+                ? fetchJSON(`/api/scatter?activity=${activityCode}&condition=${condition}&wave=${waveB}&sex=${sex}`)
+                : Promise.resolve([])
+        ]);
+        renderScatterPlot(dataA, dataB, waveA, waveB);
     } catch (err) {
         console.error('Scatter load failed:', err);
     }
 }
 
-function renderScatterPlot(data) {
+function renderScatterPlot(dataA, dataB, waveALabel, waveBLabel) {
     if (state.charts.scatter) {
         state.charts.scatter.destroy();
     }
     const ctx = document.getElementById('scatter-chart');
     if (!ctx) return;
+    const datasets = [
+        {
+            label: waveALabel || 'Wave A',
+            data: dataA.map(d => ({
+                x: d.inactivity_rate,
+                y: d.chronic_prevalence,
+                country: d.country_name
+            })),
+            backgroundColor: dataA.map(d => {
+                return isHighBurden(d.inactivity_rate, d.chronic_prevalence)
+                    ? '#C0392B' : '#1D6FA4';
+            }),
+            pointRadius: 6,
+            pointHoverRadius: 8
+        }
+    ];
+    if (dataB && dataB.length > 0) {
+        datasets.push({
+            label: waveBLabel || 'Wave B',
+            data: dataB.map(d => ({
+                x: d.inactivity_rate,
+                y: d.chronic_prevalence,
+                country: d.country_name
+            })),
+            backgroundColor: '#F59E0B',
+            pointRadius: 5,
+            pointHoverRadius: 7,
+            pointStyle: 'triangle'
+        });
+    }
     state.charts.scatter = new Chart(ctx, {
         type: 'scatter',
-        data: {
-            datasets: [{
-                label: 'Countries',
-                data: data.map(d => ({
-                    x: d.inactivity_rate,
-                    y: d.chronic_prevalence,
-                    country: d.country_name
-                })),
-                backgroundColor: data.map(d => {
-                    return isHighBurden(d.inactivity_rate, d.chronic_prevalence)
-                        ? '#C0392B' : '#1D6FA4';
-                }),
-                pointRadius: 6,
-                pointHoverRadius: 8
-            }]
-        },
+        data: { datasets },
         options: {
             responsive: true,
             maintainAspectRatio: true,
             plugins: {
-                legend: { display: false },
+                legend: {
+                    position: 'top',
+                    labels: { font: { family: 'Inter', size: 12 }, color: '#6B7280', usePointStyle: true }
+                },
                 tooltip: {
                     backgroundColor: '#fff',
                     borderColor: '#E5E7EB',
@@ -554,7 +596,9 @@ function renderScatterPlot(data) {
 async function loadAgeBreakdown(country, indicator, wave) {
     try {
         const data = await fetchJSON(`/api/age-breakdown?country=${country}&indicator=${indicator}&wave=${wave}`);
-        renderAgeBreakdown(data);
+        const checkedAges = Array.from(document.querySelectorAll('.age-cb:checked')).map(cb => cb.value);
+        const filtered = checkedAges.length > 0 ? data.filter(d => checkedAges.includes(d.age_code)) : data;
+        renderAgeBreakdown(filtered.length > 0 ? filtered : data);
     } catch (err) {
         console.error('Age breakdown load failed:', err);
     }

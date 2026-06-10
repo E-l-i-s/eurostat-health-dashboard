@@ -2,7 +2,7 @@
 
 ## Policy Context
 
-Physical inactivity is the fourth leading risk factor for global mortality, responsible for an estimated 3.2 million deaths annually according to the World Health Organization. Within the European Union, the Eurostat European Health Interview Survey (EHIS) provides the most comprehensive standardized framework for monitoring health determinants and outcomes across member states. I selected EHIS waves 2008, 2014, and 2019 as the data foundation because they represent three complete survey rounds with consistent methodology, enabling cross-temporal analysis of physical activity patterns and chronic disease prevalence across 35 European countries.
+Physical inactivity is the fourth leading risk factor for global mortality, responsible for an estimated 3.2 million deaths annually according to the World Health Organization. Within the European Union, the Eurostat European Health Interview Survey (EHIS) provides the most comprehensive standardized framework for monitoring health determinants and outcomes across member states. I selected EHIS waves 2014 and 2019 as the data foundation because they represent two complete survey rounds with consistent methodology, enabling cross-temporal analysis of physical activity patterns and chronic disease prevalence across 35 European countries.
 
 The WHO 2020 guidelines recommend adults aged 18-64 engage in at least 150 minutes of moderate-intensity aerobic physical activity per week, or 75 minutes of vigorous-intensity activity, or an equivalent combination. Despite this standard, Eurostat reports indicate that a substantial proportion of the European population falls short of these targets, with significant variation by country, age group, and sex. This variation, and its relationship to chronic disease outcomes, forms the analytical core of this project.
 
@@ -28,4 +28,4 @@ The limitation is self-report bias. Respondents systematically overreport physic
 
 1. What is the relationship between physical activity insufficiency rates and chronic disease prevalence across European countries, and does this relationship hold across demographic subgroups defined by age and sex?
 
-2. Which European countries face the greatest combined burden of high physical inactivity and high chronic disease prevalence, and has this burden increased or decreased between the 2008, 2014, and 2019 EHIS survey waves?
+2. Which European countries face the greatest combined burden of high physical inactivity and high chronic disease prevalence, and has this burden increased or decreased between the 2014 and 2019 EHIS survey waves?

@@ -2,13 +2,13 @@
 
 ## Overview
 
-The cleaned dataset contains measurements of physical activity insufficiency, chronic disease prevalence, and BMI classification across European countries, drawn from three Eurostat EHIS datasets. The data covers approximately 35 countries across up to three survey waves (2008, 2014, 2019).
+The cleaned dataset contains measurements of physical activity insufficiency, chronic disease prevalence, and BMI classification across European countries, drawn from three Eurostat EHIS datasets. The data covers approximately 35 countries across two survey waves (2014, 2019).
 
 ## Key Statistics
 
 - **Rows:** ~25,000 measurements after cleaning (actual count depends on API response completeness and suppression patterns)
 - **Columns:** 15 standardized fields
-- **Time range:** 2008 — 2019 (three EHIS waves)
+- **Time range:** 2014 — 2019 (two EHIS waves)
 - **Geographic coverage:** EU member states plus EFTA and candidate countries
 - **Indicators:** Physical activity insufficiency, obesity, diabetes, hypertension, cardiovascular disease, BMI categories
 
@@ -19,7 +19,7 @@ The data naturally decomposes into these entity groups:
 1. **Geographic entities** — Countries identified by ISO 3166-1 alpha-2 codes with associated names
 2. **Demographic dimensions** — Sex categories (Total, Male, Female) and age groups (8 standardized brackets from TOTAL to 75+)
 3. **Health indicators** — Individual measured indicators grouped into categories (Physical Activity, Chronic Disease, BMI)
-4. **Temporal dimension** — Survey waves identified by year (2008, 2014, 2019)
+4. **Temporal dimension** — Survey waves identified by year (2014, 2019)
 5. **Source provenance** — The original Eurostat dataset code and retrieval metadata
 6. **Measurements** — The observed values themselves, linked to all of the above
 

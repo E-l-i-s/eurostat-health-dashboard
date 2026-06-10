@@ -35,7 +35,6 @@
 <div class="filter-group">
 <label for="wave-select">Wave A</label>
 <select id="wave-select">
-<option value="2008">2008</option>
 <option value="2014">2014</option>
 <option value="2019" selected>2019</option>
 </select>
@@ -43,8 +42,7 @@
 <div class="filter-group">
 <label for="wave-select-b">Wave B</label>
 <select id="wave-select-b">
-<option value="2008" selected>2008</option>
-<option value="2014">2014</option>
+<option value="2014" selected>2014</option>
 <option value="2019">2019</option>
 </select>
 </div>
@@ -63,6 +61,18 @@
 <div class="filter-group">
 <label for="country-multi">Country</label>
 <select id="country-multi" multiple></select>
+</div>
+<div class="filter-group checkbox-group">
+<label>Age Groups</label>
+<div class="age-checkboxes" id="age-filter">
+<label><input type="checkbox" class="age-cb" value="Y18-24" checked> 18-24</label>
+<label><input type="checkbox" class="age-cb" value="Y25-34" checked> 25-34</label>
+<label><input type="checkbox" class="age-cb" value="Y35-44" checked> 35-44</label>
+<label><input type="checkbox" class="age-cb" value="Y45-54" checked> 45-54</label>
+<label><input type="checkbox" class="age-cb" value="Y55-64" checked> 55-64</label>
+<label><input type="checkbox" class="age-cb" value="Y65-74" checked> 65-74</label>
+<label><input type="checkbox" class="age-cb" value="Y75+" checked> 75+</label>
+</div>
 </div>
 </div>
 </header>

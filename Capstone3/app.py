@@ -274,8 +274,8 @@ def create_app():
             return jsonify({"error": "Missing parameters", "status": 400}), 400
         db = get_db()
         rows = db.execute("""
-            SELECT ag.label AS age_group, s.label AS sex,
-                   ROUND(AVG(m.value), 1) AS value
+            SELECT ag.label AS age_group, ag.age_code AS age_code,
+                   s.label AS sex, ROUND(AVG(m.value), 1) AS value
             FROM Measurement m
             JOIN AgeGroup ag ON m.age_code = ag.age_code
             JOIN Sex s ON m.sex_code = s.sex_code

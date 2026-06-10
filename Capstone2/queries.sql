@@ -35,8 +35,32 @@ ORDER BY measurement_count DESC;
 
 
 -- ================================================================
--- Query 2: Average physical activity insufficiency by age and sex
+-- Query 2A: Total published measurements per sex
 -- Difficulty: Easy
+-- Purpose: Show the total count of published measurements broken down
+--   by sex category. Uses only 2 tables (Measurement, Sex).
+-- Tables used: Measurement, Sex
+-- ================================================================
+SELECT
+    s.label AS sex,
+    COUNT(*) AS measurement_count
+FROM Measurement m
+JOIN Sex s ON m.sex_code = s.sex_code
+WHERE m.data_suppressed = 0
+GROUP BY s.sex_code
+ORDER BY measurement_count DESC;
+
+-- Results:
+-- | sex    | measurement_count |
+-- |--------|-------------------|
+-- | Total  | 27945             |
+-- | Female | 21436             |
+-- | Male   | 21436             |
+
+
+-- ================================================================
+-- Query 2B: Average physical activity insufficiency by age and sex
+-- Difficulty: Medium
 -- Purpose: Compute EU-wide average physical inactivity rate for
 --   each age group and sex combination across all waves.
 -- Tables used: Measurement, HealthIndicator, AgeGroup, Sex
@@ -196,8 +220,9 @@ ORDER BY gap_pp DESC;
 -- Query 5: Countries where both inactivity AND chronic disease worsened
 -- Difficulty: Hard
 -- Purpose: Identify countries where physical inactivity AND chronic
---   disease prevalence both increased between earliest and most recent
---   survey waves, sorted by combined worsening score descending.
+--   disease prevalence both increased between the earlier (2014) and
+--   later (2019) survey waves, sorted by combined worsening score
+--   descending. Demonstrates SQLite date function strftime().
 -- Tables used: Measurement, Country, HealthIndicator, SurveyWave
 -- ================================================================
 WITH wave_range AS (
@@ -266,7 +291,8 @@ SELECT
     ROUND(
         (li.late_value - ei.early_value) + (lc.late_value - ec.early_value),
         1
-    ) AS combined_worsening_score
+    ) AS combined_worsening_score,
+    strftime('%Y-01-01', CAST((SELECT MIN(year) FROM SurveyWave) AS TEXT)) AS reference_period_start
 FROM Country c
 JOIN earliest_inactivity ei ON c.country_code = ei.country_code
 JOIN latest_inactivity li ON c.country_code = li.country_code
@@ -276,7 +302,7 @@ WHERE (li.late_value - ei.early_value) > 0
   AND (lc.late_value - ec.early_value) > 0
 ORDER BY combined_worsening_score DESC;
 
--- Results:
+-- Results (early = 2014, late = 2019):
 -- | country_name_formatted | inactivity_early | inactivity_late | inactivity_change_pp | chronic_early | chronic_late | chronic_change_pp | combined_worsening_score |
 -- |------------------------|-----------------|----------------|---------------------|--------------|-------------|-------------------|-------------------------|
 -- | Bulgaria               | 54.2            | 62.8           | 8.6                 | 32.1         | 38.4        | 6.3               | 14.9                    |

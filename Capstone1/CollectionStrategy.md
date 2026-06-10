@@ -16,7 +16,7 @@ The API approach is superior because it eliminates the 30+ manual clicks require
 
 ## Frequency and Timing
 
-One-time batch retrieval covering all three EHIS waves (2008, 2014, 2019). The script retrieves all available years from the API without hardcoding year values, ensuring that any Eurostat data revisions or additions are captured automatically.
+One-time batch retrieval covering both available EHIS waves (2014, 2019). The script retrieves all available years from the API without hardcoding year values, ensuring that any Eurostat data revisions or additions are captured automatically.
 
 ## Tools
 
@@ -56,7 +56,7 @@ Approximate dimension cardinalities:
 - Country codes: ~35
 - Age groups: 8 (TOTAL, Y18-24, Y25-34, Y35-44, Y45-54, Y55-64, Y65-74, Y75+)
 - Sex categories: 3 (Total, Male, Female)
-- Survey waves: 3 (2008, 2014, 2019)
+- Survey waves: 2 (2014, 2019)
 - Indicator variations: ~10 (physical activity + 4 chronic conditions + BMI categories)
 
-**Calculation:** 35 × 8 × 3 × 3 × 10 = 25,200 potential rows. Not all combinations exist in the data (Eurostat suppresses small-cell counts), but the dataset reliably exceeds 10,000 rows across the three combined sources.
+**Calculation:** 35 × 8 × 3 × 2 × 10 = 16,800 potential rows. Not all combinations exist in the data (Eurostat suppresses small-cell counts), but the dataset reliably exceeds 10,000 rows across the two survey waves and three combined sources.
