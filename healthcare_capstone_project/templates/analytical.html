@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytical Dashboard | EnergyAnalytics</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">EnergyAnalytics</div>
+        <div class="nav-links">
+            <a href="/">Home</a>
+            <a href="/dashboard/strategic">Strategic</a>
+            <a href="/dashboard/analytical" class="active">Analytical</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="header-section">
+            <h1>Correlation & Deep-Dive Analysis</h1>
+            <p>Analyzing the interplay between energy sources and environmental impacts.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="card chart-card">
+                <h3>Renewables vs. Fossil Fuel Correlation</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Scatter plot visualizing the inverse relationship between renewable growth and fossil fuel dependency.</p>
+                <div class="chart-container">
+                    <canvas id="renewablesVsFossilChart"></canvas>
+                </div>
+            </div>
+
+            <div class="card chart-card">
+                <h3>Wind vs. Coal Consumption</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Tracking the comparative trends of wind power adoption against coal usage.</p>
+                <div class="chart-container">
+                    <canvas id="windVsCoalChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Data Source: Our World in Data (OWID) Energy Dataset</p>
+            <p>&copy; 2026 EnergyAnalytics Intelligence Portal</p>
+        </footer>
+    </main>
+
+    <script>
+        const COLORS = ['#10b981', '#ef4444', '#f59e0b', '#3b82f6', '#8b5cf6', '#06b6d4'];
+
+        async function loadAnalyticalData() {
+            const response = await fetch('/api/analytical-data');
+            const data = await response.json();
+
+            // Renewables vs Fossil
+            new Chart(document.getElementById('renewablesVsFossilChart'), {
+                type: 'scatter',
+                data: {
+                    datasets: [{
+                        label: 'Annual Records',
+                        data: data.renewables_vs_fossil.map(i => ({ x: i.Renewables, y: i.Fossil })),
+                        backgroundColor: 'rgba(16, 185, 129, 0.5)',
+                        borderColor: '#10b981',
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { title: { display: true, text: 'Renewables Share (%)' }, grid: { color: '#f1f5f9' } },
+                        y: { title: { display: true, text: 'Fossil Share (%)' }, grid: { color: '#f1f5f9' } }
+                    }
+                }
+            });
+
+            // Wind vs Coal
+            new Chart(document.getElementById('windVsCoalChart'), {
+                type: 'line',
+                data: {
+                    labels: data.wind_vs_coal.map(i => i.Year),
+                    datasets: [
+                        {
+                            label: 'Wind Consumption',
+                            data: data.wind_vs_coal.map(i => i.Wind),
+                            borderColor: '#3b82f6',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        },
+                        {
+                            label: 'Coal Consumption',
+                            data: data.wind_vs_coal.map(i => i.Coal),
+                            borderColor: '#ef4444',
+                            backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                            fill: true,
+                            tension: 0.3
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { title: { display: true, text: 'Consumption (TWh)' }, grid: { color: '#f1f5f9' } },
+                        x: { grid: { display: false } }
+                    }
+                }
+            });
+        }
+        loadAnalyticalData();
+    </script>
+</body>
+</html>

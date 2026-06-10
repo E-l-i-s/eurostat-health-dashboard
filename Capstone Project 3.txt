@@ -1,0 +1,184 @@
+Capstone Project 3: Dashboard
+Development
+Assignment Type: Individual
+Submission Format: Report + Dashboard Files + SQL Queries
+Due Date: June 7th 23:59
+
+Objective:
+The goal of this project is to develop two interactive dashboard using the cleaned
+dataset and database from Capstone Project 2. This dashboard should provide
+meaningful insights, visualizations, and an intuitive user experience. You will learn how
+to integrate front-end, back-end, and database elements to create a data-driven
+application.
+
+Project Guidelines:
+Step 1: Define Dashboard Requirements
+•
+•
+•
+•
+•
+
+Understand the end users – Who will use the dashboard? What are their
+demographics?
+Identify key metrics – What data insights are most important?
+Choose appropriate charts – What types of visualizations best represent the
+data?
+Story telling – What is the story behind your dashboard?
+Dashboard type – What type of dashboard are you going to design to tell the
+story? Analytical, Operational, Strategic, Managerial (Tactical). Both dashboards
+need to be different types.
+
+Deliverable:
+•
+
+A brief Dashboard Plan outlining story, type of dashboard, key features, target
+users, and required visualizations.
+
+Step 2: Database Integration
+•
+•
+
+Connect the database from Capstone Project 2 to the dashboards.
+Optimize queries for data retrieval.
+
+•
+
+Perform aggregations and filtering for dashboard performance.
+
+Deliverable:
+•
+•
+
+SQL Queries used for data retrieval and transformation.
+Database connection code (Python/Flask, SQLAlchemy, etc.).
+
+Step 3: Dashboard Design
+•
+
+•
+
+Define the layout and UX:
+o Widgets
+o Logical placement of charts, filters, and tables.
+o Interactive elements (dropdowns, search, date filters).
+Tools:
+o Python (Flask compulsory)
+o JavaScript (Chart.js, D3.js)
+o ObservableHQ (optional addition)
+o Tableau / Power BI (optional addition)
+
+Deliverable:
+•
+
+N/A
+
+Step 4: Develop the Dashboard
+•
+
+•
+
+Front-End:
+o Use HTML, CSS, JavaScript for styling and responsiveness.
+o Implement interactive elements using Flask, and JavaScript libraries.
+Back-End:
+o Connect the database using Flask.
+o Fetch data dynamically and render it on the dashboard.
+
+Deliverable:
+•
+•
+•
+
+2 Fully functional dashboard.
+Screenshots of the working dashboard.
+Source code files (HTML, CSS, JavaScript, Python, etc.) on GitHub link
+
+Step 5: Data Visualization
+•
+•
+•
+
+Implement charts, graphs, tables to present data insights.
+Ensure real-time data updates if applicable.
+Optimize the dashboard for performance and readability.
+
+Deliverable:
+•
+
+At least 4-5 meaningful visualizations per dashboard.
+
+•
+•
+•
+
+At least 4 different quantitative visualization techniques need to be used
+At least 3 Qualitative Visualization Techniques Need to be Used
+Interactive elements such as filters and search.
+
+Step 6: User Experience (UX) and Testing
+•
+
+•
+•
+
+Test dashboard usability:
+o Is it intuitive and user-friendly?
+o Are the charts easy to interpret?
+o Does it load efficiently?
+Gather feedback from users or peers.
+Fix bugs and improve dashboard responsiveness.
+
+Deliverable:
+•
+•
+
+List of UX considerations and improvements fully integrated into the
+dashboard screenshots from step 5
+Screenshots of dashboard functionality.
+
+Submission Requirements
+Your final submission should include:
+1. Dashboard Plan (Step 1)
+2. Database Connection & SQL Queries (Step 2)
+3. N/A (Step 3)
+4. Dashboard Code & Screenshots (Step 4-5)
+5. Screenshots of Dashboard (Step 6)
+
+Evaluation Criteria (Rubric)
+Category
+Dashboard
+Planning
+Database
+Integration
+Dashboard
+Design & UX
+Functional
+Dashboard
+Data
+Visualization
+
+Points
+15
+20
+20
+25
+20
+
+Description
+Clear identification of goals, audience, and key metrics for
+both dashboards. No story, no marks. Different dashboard
+types required.
+Efficient database connection and optimized queries for
+two dashboards.
+Well-structured layout and intuitive user experience for
+both dashboards.
+Working dashboard with interactive elements and
+visualizations for both dashboards.
+Meaningful charts, graphs, and tables to represent insights
+for both dashboards. At least 4 quantitative. At least 3
+qualitative
+
+Total: 100 points
+
+

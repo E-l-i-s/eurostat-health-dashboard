@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energy Intelligence Portal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">EnergyAnalytics</div>
+        <div class="nav-links">
+            <a href="/dashboard/strategic">Strategic</a>
+            <a href="/dashboard/analytical">Analytical</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="header-section">
+            <h1>Energy Transition Intelligence</h1>
+            <p>Monitoring Austria's shift towards sustainable energy and decarbonization.</p>
+        </header>
+
+        <div class="dashboard-grid">
+            <div class="card chart-card">
+                <h3>Strategic Intelligence</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">High-level metrics for energy mix and operational capacity.</p>
+                <a href="/dashboard/strategic" class="card-link">View Strategic Dashboard</a>
+            </div>
+            <div class="card chart-card">
+                <h3>Analytical Insights</h3>
+                <p style="color: var(--text-muted); margin-bottom: 1.5rem;">Deep-dive correlation analysis of energy sources and trends.</p>
+                <a href="/dashboard/analytical" class="card-link">View Analytical Dashboard</a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
+
