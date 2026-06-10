@@ -1,7 +1,7 @@
 *.json
--Encoding
-ASCII
+!vercel.json
 
 *.db
+!Capstone2/capstone.db
 __pycache__/
 *.pyc
