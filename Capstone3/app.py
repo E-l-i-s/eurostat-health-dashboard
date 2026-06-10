@@ -28,11 +28,17 @@ def create_app():
 
     @app.route("/")
     def dashboard1():
-        return render_template("index.html")
+        try:
+            return render_template("index.html")
+        except Exception as e:
+            return f"<h1>Template Error</h1><p>{e}</p>", 500
 
     @app.route("/analytics")
     def dashboard2():
-        return render_template("dashboard2.html")
+        try:
+            return render_template("dashboard2.html")
+        except Exception as e:
+            return f"<h1>Template Error</h1><p>{e}</p>", 500
 
     @app.route("/api/countries")
     def api_countries():
