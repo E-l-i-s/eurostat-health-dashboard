@@ -1,0 +1,7 @@
+*.json
+-Encoding
+ASCII
+
+*.db
+__pycache__/
+*.pyc

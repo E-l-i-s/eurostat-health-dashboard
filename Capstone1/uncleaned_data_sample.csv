@@ -1,0 +1,21 @@
+geo,country_name,time,sex,age,indicator_code,indicator_label,value,unit,data_suppressed,source_dataset
+AT,Austria,2014,T,TOTAL,PA_INS,Physical activity insufficiency,38.2,PC,False,hlth_ehis_pe3
+BE,Belgium,2014,T,TOTAL,PA_INS,Physical activity insufficiency,42.1,PC,False,hlth_ehis_pe3
+BG,Bulgaria,2014,T,TOTAL,PA_INS,Physical activity insufficiency,58.7,PC,False,hlth_ehis_pe3
+HR,Croatia,2014,T,TOTAL,PA_INS,Physical activity insufficiency,55.3,PC,False,hlth_ehis_pe3
+CZ,Czechia,2014,T,TOTAL,PA_INS,Physical activity insufficiency,44.6,PC,False,hlth_ehis_pe3
+DK,Denmark,2014,T,TOTAL,PA_INS,Physical activity insufficiency,29.4,PC,False,hlth_ehis_pe3
+FI,Finland,2014,T,TOTAL,PA_INS,Physical activity insufficiency,27.8,PC,False,hlth_ehis_pe3
+FR,France,2014,T,TOTAL,PA_INS,Physical activity insufficiency,36.5,PC,False,hlth_ehis_pe3
+DE,Germany,2014,T,TOTAL,PA_INS,Physical activity insufficiency,34.1,PC,False,hlth_ehis_pe3
+GR,Greece,2014,T,TOTAL,PA_INS,Physical activity insufficiency,52.4,PC,False,hlth_ehis_pe3
+HU,Hungary,2014,T,TOTAL,PA_INS,Physical activity insufficiency,56.2,PC,False,hlth_ehis_pe3
+IE,Ireland,2014,T,TOTAL,PA_INS,Physical activity insufficiency,31.7,PC,False,hlth_ehis_pe3
+IT,Italy,2014,T,TOTAL,PA_INS,Physical activity insufficiency,48.9,PC,False,hlth_ehis_pe3
+NL,Netherlands,2014,T,TOTAL,PA_INS,Physical activity insufficiency,28.3,PC,False,hlth_ehis_pe3
+PL,Poland,2014,T,TOTAL,PA_INS,Physical activity insufficiency,51.8,PC,False,hlth_ehis_pe3
+PT,Portugal,2014,T,TOTAL,PA_INS,Physical activity insufficiency,47.5,PC,False,hlth_ehis_pe3
+RO,Romania,2014,T,TOTAL,PA_INS,Physical activity insufficiency,62.1,PC,False,hlth_ehis_pe3
+SK,Slovakia,2014,T,TOTAL,PA_INS,Physical activity insufficiency,53.9,PC,False,hlth_ehis_pe3
+ES,Spain,2014,T,TOTAL,PA_INS,Physical activity insufficiency,40.3,PC,False,hlth_ehis_pe3
+SE,Sweden,2014,T,TOTAL,PA_INS,Physical activity insufficiency,26.1,PC,False,hlth_ehis_pe3

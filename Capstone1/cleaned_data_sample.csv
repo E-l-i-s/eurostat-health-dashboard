@@ -1,0 +1,21 @@
+geo,country_name,time,sex,age_group,indicator_code,indicator_label,indicator_category,value,unit,data_suppressed,is_outlier_flagged,source_dataset,ehis_wave,last_retrieved
+AT,Austria,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,38.2,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+BE,Belgium,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,42.1,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+BG,Bulgaria,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,58.7,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+HR,Croatia,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,55.3,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+CZ,Czechia,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,44.6,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+DK,Denmark,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,29.4,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+FI,Finland,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,27.8,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+FR,France,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,36.5,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+DE,Germany,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,34.1,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+GR,Greece,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,52.4,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+HU,Hungary,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,56.2,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+IE,Ireland,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,31.7,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+IT,Italy,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,48.9,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+NL,Netherlands,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,28.3,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+PL,Poland,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,51.8,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+PT,Portugal,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,47.5,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+RO,Romania,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,62.1,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+SK,Slovakia,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,53.9,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+ES,Spain,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,40.3,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
+SE,Sweden,2014,TOTAL,TOTAL,PA_INS,Physical activity insufficiency,Physical Activity,26.1,PC,False,False,hlth_ehis_pe3,EHIS Wave 2 (2014),2026-06-10
