@@ -3,7 +3,7 @@ import pandas as pd
 import numpy as np
 
 def setup_energy_db():
-    conn = sqlite3.connect("healthcare_capstone_project/energy.db")
+    conn = sqlite3.connect("energy_transition_project/energy.db")
     cursor = conn.cursor()
 
     # Clean start
@@ -27,7 +27,7 @@ def setup_energy_db():
     cursor.execute("CREATE TABLE GDP_Data (GDPID INTEGER PRIMARY KEY, CountryID INTEGER, YearID INTEGER, GDP_Value REAL, FOREIGN KEY(CountryID) REFERENCES Country(CountryID), FOREIGN KEY(YearID) REFERENCES Year(YearID))")
 
     # Load Data
-    df = pd.read_csv("healthcare_capstone_project/data/austria_energy_cleaned.csv")
+    df = pd.read_csv("energy_transition_project/data/austria_energy_cleaned.csv")
 
     # 1. Country & Year
     cursor.execute("INSERT INTO Country (Name, ISO_Code) VALUES (?, ?)", ('Austria', 'AUT'))

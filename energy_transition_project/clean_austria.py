@@ -33,4 +33,4 @@ def clean_austria_data(input_path, output_path):
     print(f"Cleaned {len(df)} records.")
 
 if __name__ == "__main__":
-    clean_austria_data("healthcare_capstone_project/data/austria_energy.csv", "healthcare_capstone_project/data/austria_energy_cleaned.csv")
+    clean_austria_data("energy_transition_project/data/austria_energy.csv", "energy_transition_project/data/austria_energy_cleaned.csv")

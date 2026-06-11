@@ -2,7 +2,7 @@ import sqlite3
 import pandas as pd
 
 def run_queries():
-    conn = sqlite3.connect("healthcare_capstone_project/energy.db")
+    conn = sqlite3.connect("energy_transition_project/energy.db")
     
     queries = {
         "Easy 1: Available Energy Sources": "SELECT SourceName FROM EnergySource",

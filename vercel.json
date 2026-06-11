@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "healthcare_capstone_project/app.py",
+      "src": "energy_transition_project/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "healthcare_capstone_project/app.py"
+      "dest": "energy_transition_project/app.py"
     }
   ]
 }
