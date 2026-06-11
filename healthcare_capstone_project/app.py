@@ -1,9 +1,11 @@
 from flask import Flask, render_template, jsonify
 import sqlite3
 import pandas as pd
+import os
 
 app = Flask(__name__)
-DB_PATH = "healthcare_capstone_project/energy.db"
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+DB_PATH = os.path.join(BASE_DIR, "energy.db")
 
 def query_db(query):
     conn = sqlite3.connect(DB_PATH)
@@ -26,7 +28,7 @@ def analytical():
 @app.route('/api/strategic-data')
 def strategic_data():
     data = {
-        "total_records": int(query_db("SELECT COUNT(*) FROM EnergyValue").iloc[0,0]),
+        "total_records": int(query_db("SELECT COUNT(*) FROM EnergyValue WHERE MetricID = 1").iloc[0,0] if not query_db("SELECT COUNT(*) FROM EnergyValue WHERE MetricID = 1").empty else 0),
         "avg_renewable_share": round(query_db("SELECT AVG(Value) FROM EnergyValue WHERE MetricID = 1 AND YearID >= 100").iloc[0,0], 1) if not query_db("SELECT AVG(Value) FROM EnergyValue WHERE MetricID = 1 AND YearID >= 100").empty else 0,
         "avg_mix_by_type": query_db("SELECT 'Renewables' as Type, AVG(Value) as val FROM EnergyValue WHERE MetricID = 1 AND YearID >= 100 UNION SELECT 'Fossil' as Type, AVG(Value) as val FROM EnergyValue WHERE MetricID = 2 AND YearID >= 100").to_dict(orient='records'),
         "volume_by_source": query_db("SELECT s.SourceName as Name, SUM(ev.Value) as count FROM EnergySourceValue ev JOIN EnergySource s ON ev.SourceID = s.SourceID WHERE ev.YearID >= 100 GROUP BY s.SourceName").to_dict(orient='records'),
