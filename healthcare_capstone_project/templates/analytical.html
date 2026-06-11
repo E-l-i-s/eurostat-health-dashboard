@@ -42,6 +42,25 @@
                     <canvas id="windVsCoalChart"></canvas>
                 </div>
             </div>
+
+            <!-- Qualitative: Table -->
+            <div class="card full-width-card">
+                <h3>Key Risk Factor Breakdown</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Ranking of identified energy-related risk factors by occurrence.</p>
+                <div style="overflow-x: auto;">
+                    <table id="risk-table" style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted); font-size: 0.875rem;">
+                                <th style="padding: 0.75rem; text-align: left;">Factor Name</th>
+                                <th style="padding: 0.75rem; text-align: left;">Frequency</th>
+                            </tr>
+                        </thead>
+                        <tbody id="risk-table-body">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <footer>
@@ -111,6 +130,17 @@
                         x: { grid: { display: false } }
                     }
                 }
+            });
+
+            // Populate Risk Table (Qualitative)
+            const tableBody = document.getElementById('risk-table-body');
+            data.risk_prevalence.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border); font-weight: 500;">${item.FactorName}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border);">${item.count}</td>
+                `;
+                tableBody.appendChild(row);
             });
         }
         loadAnalyticalData();

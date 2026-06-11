@@ -33,7 +33,7 @@
                 <div id="total-energy" class="kpi-value">...</div>
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Historical records processed</p>
             </div>
-            <div class="card kpi-card">
+            <div class            class="card kpi-card">
                 <h3>Avg. Renewable Share</h3>
                 <div id="avg-renewables" class="kpi-value">...</div>
                 <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">Percentage of energy mix</p>
@@ -70,6 +70,25 @@
                 <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Monitoring the reduction in fossil fuel dependency.</p>
                 <div class="chart-container">
                     <canvas id="fossilTrendChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Qualitative: Table -->
+            <div class="card full-width-card">
+                <h3>Energy Source Summary</h3>
+                <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 1rem;">Detailed breakdown of total consumption by primary energy source.</p>
+                <div style="overflow-x: auto;">
+                    <table id="source-table" style="width: 100%; border-collapse: collapse; margin-top: 1rem; text-align: left;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border); color: var(--text-muted); font-size: 0.875rem;">
+                                <th style="padding: 0.75rem;">Source Name</th>
+                                <th style="padding: 0.75rem;">Total Consumption (TWh)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="source-table-body">
+                            <!-- Data will be inserted here -->
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
@@ -165,6 +184,17 @@
                     maintainAspectRatio: false,
                     scales: { y: { beginAtZero: true } }
                 }
+            });
+
+            // Populate Table (Qualitative)
+            const tableBody = document.getElementById('source-table-body');
+            data.volume_by_source.forEach(item => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border);">${item.Name}</td>
+                    <td style="padding: 0.75rem; border-bottom: 1px solid var(--border);">${item.count.toFixed(2)}</td>
+                `;
+                tableBody.appendChild(row);
             });
         }
         loadData();
