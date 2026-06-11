@@ -1,9 +1,13 @@
 import sqlite3
 import pandas as pd
 import numpy as np
+import os
 
 def setup_energy_db():
-    conn = sqlite3.connect("energy_transition_project/energy.db")
+    BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+    DB_PATH = os.path.join(BASE_DIR, "energy.db")
+    
+    conn = sqlite3.connect(DB_PATH)
     cursor = conn.cursor()
 
     # Clean start
@@ -27,7 +31,7 @@ def setup_energy_db():
     cursor.execute("CREATE TABLE GDP_Data (GDPID INTEGER PRIMARY KEY, CountryID INTEGER, YearID INTEGER, GDP_Value REAL, FOREIGN KEY(CountryID) REFERENCES Country(CountryID), FOREIGN KEY(YearID) REFERENCES Year(YearID))")
 
     # Load Data
-    df = pd.read_csv("energy_transition_project/data/austria_energy_cleaned.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "data", "austria_energy_cleaned.csv"))
 
     # 1. Country & Year
     cursor.execute("INSERT INTO Country (Name, ISO_Code) VALUES (?, ?)", ('Austria', 'AUT'))
@@ -114,7 +118,8 @@ def setup_energy_db():
 
     conn.commit()
     conn.close()
-    print("Energy database setup and population complete.")
+    print(f"Energy database created at {DB_PATH}")
 
 if __name__ == "__main__":
     setup_energy_db()
+
