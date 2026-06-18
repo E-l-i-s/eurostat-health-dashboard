@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Austria Energy Transition 1900–2024. Strategic policy overview for government analysts. Energy mix evolution, renewable share milestones, CO₂ trajectory, and EU benchmark comparison.">
+<title>Strategic Overview - Austria Energy Transition</title>
+<link rel="stylesheet" href="/static/css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3.0.1/dist/chartjs-plugin-annotation.min.js"></script>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════════
+     SIDEBAR
+════════════════════════════════════════════════════ -->
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="sidebar-brand-title">Austria Energy<br>Transition</div>
+    <div class="sidebar-brand-sub">1900 – 2024 · Capstone Analysis</div>
+    <span class="sidebar-brand-badge">Renewables Leader</span>
+  </div>
+
+  <nav class="sidebar-nav">
+    <div class="sidebar-section-label">Dashboards</div>
+
+    <a href="/" class="nav-item active">
+      <svg viewBox="0 0 16 16" fill="currentColor">
+        <rect x="1" y="1" width="6" height="6" rx="1"/>
+        <rect x="9" y="1" width="6" height="6" rx="1"/>
+        <rect x="1" y="9" width="6" height="6" rx="1"/>
+        <rect x="9" y="9" width="6" height="6" rx="1"/>
+      </svg>
+      Strategic Overview
+    </a>
+
+    <a href="/analytical" class="nav-item">
+      <svg viewBox="0 0 16 16" fill="currentColor">
+        <path d="M2 14 L2 10 L5 10 L5 14 M6 14 L6 7 L9 7 L9 14 M10 14 L10 4 L13 4 L13 14" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      Analytical Deep-Dive
+    </a>
+
+    <div class="sidebar-divider"></div>
+    <div class="sidebar-section-label">Filters</div>
+
+    <div style="padding: 4px 4px">
+      <div class="control-label" style="padding: 4px 6px 6px">Year Range</div>
+      <div class="range-wrapper" style="padding: 0 6px">
+        <div class="range-track-wrap">
+          <div class="range-track-bg"></div>
+          <div class="range-fill" id="rangeFill"></div>
+          <input type="range" id="minYearSlider" min="1900" max="2024" value="1900" step="1">
+          <input type="range" id="maxYearSlider" min="1900" max="2024" value="2024" step="1">
+        </div>
+        <div class="range-values">
+          <span class="range-val" id="minYearDisplay">1900</span>
+          <span style="font-size:9px;color:#475569">to</span>
+          <span class="range-val" id="maxYearDisplay">2024</span>
+        </div>
+      </div>
+
+      <div class="control-label" style="padding: 10px 6px 6px">Energy Sources</div>
+      <div class="source-pills" style="padding: 0 6px" id="sourceToggles">
+        <label class="source-pill"><input type="checkbox" value="hydro" checked><span class="swatch" style="background:#0284C7"></span>Hydro</label>
+        <label class="source-pill"><input type="checkbox" value="wind" checked><span class="swatch" style="background:#0D9488"></span>Wind</label>
+        <label class="source-pill"><input type="checkbox" value="solar" checked><span class="swatch" style="background:#F59E0B"></span>Solar</label>
+        <label class="source-pill"><input type="checkbox" value="biomass" checked><span class="swatch" style="background:#65A30D"></span>Biomass</label>
+        <label class="source-pill"><input type="checkbox" value="coal" checked><span class="swatch" style="background:#1F2937"></span>Coal</label>
+        <label class="source-pill"><input type="checkbox" value="gas" checked><span class="swatch" style="background:#7C3AED"></span>Gas</label>
+        <label class="source-pill"><input type="checkbox" value="oil" checked><span class="swatch" style="background:#65A30D" style="opacity:0.6"></span>Oil</label>
+      </div>
+    </div>
+
+  </nav>
+
+  <div class="sidebar-footer">
+    <strong>Data Sources</strong>
+    <a href="https://www.iea.org/data-and-statistics" target="_blank">IEA World Energy Balances</a> ·
+    <a href="https://ec.europa.eu/eurostat/databrowser/view/sdg_07_40" target="_blank">Eurostat SDG_07_40</a> ·
+    <a href="https://edgar.jrc.ec.europa.eu/" target="_blank">EDGAR GHG v8</a> ·
+    <a href="https://www.statistik.at/" target="_blank">Statistik Austria</a> ·
+    <a href="https://data.worldbank.org/" target="_blank">World Bank</a>
+  </div>
+</aside>
+
+<!-- ════════════════════════════════════════════════════
+     MAIN CONTENT
+════════════════════════════════════════════════════ -->
+<div class="main">
+
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="topbar-title">Strategic Overview - Austria Energy Transition, 1900–2024</div>
+  </div>
+
+  <div class="page">
+
+    <!-- ── Contextual Insight ───────────────────────────────── -->
+    <div class="insight-bar">
+      Austria has reached a <strong>42% renewable share of gross final energy</strong> (Eurostat SDG_07_40, 2024 estimate) - 
+      16 percentage points above the EU27 average and more than double the 1970 level. CO₂ emissions peaked at 
+      <strong>80.4 Mt in 2005</strong> and have declined 29% since. Nuclear power has been constitutionally prohibited 
+      since the 1978 Zwentendorf referendum; Austria generates no nuclear electricity.
+    </div>
+
+    <!-- ── KPI Row ──────────────────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-title">Key Indicators - 2024</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Renewable Share</div>
+        <div class="kpi-value" id="kpiShare">-</div>
+        <div class="kpi-sub">Gross final energy consumption<br>Eurostat SDG_07_40</div>
+      </div>
+      <div class="kpi-card co2">
+        <div class="kpi-label">CO₂ Reduction from Peak</div>
+        <div class="kpi-value" id="kpiCo2">-</div>
+        <div class="kpi-sub">Since peak year 2005 (~80.4 Mt)<br>Source: UBA / EDGAR GHG v8</div>
+      </div>
+      <div class="kpi-card intens">
+        <div class="kpi-label">Energy Intensity Change</div>
+        <div class="kpi-value" id="kpiIntensity">-</div>
+        <div class="kpi-sub">Improvement since 1900<br>TWh per billion USD GDP</div>
+      </div>
+      <div class="kpi-card twh">
+        <div class="kpi-label">Renewable Generation</div>
+        <div class="kpi-value" id="kpiRenewableTwh">-</div>
+        <div class="kpi-sub">Total TWh from renewable sources<br>Hydro + Wind + Solar + Biomass</div>
+      </div>
+    </div>
+
+    <!-- ── Policy Timeline ──────────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-title">Policy Milestones</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="timeline-card">
+      <div class="card-header" style="border:none;margin:0;padding-bottom:10px">
+        <div>
+          <div class="card-title">Eleven Key Policy Events, 1918–2024</div>
+          <div class="card-subtitle">Events selected for demonstrated impact on energy supply structure or legislative framework</div>
+        </div>
+      </div>
+      <div class="timeline-rail" id="policyTimeline">
+        <div class="loading"><div class="spin"></div></div>
+      </div>
+    </div>
+
+    <!-- ── Main Charts ──────────────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-title">Energy Mix Evolution</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="card full" style="margin-bottom:14px">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Total Primary Energy Supply by Source, 1900–2024 (TWh)</div>
+          <div class="card-subtitle">Stacked area - use year range slider to zoom any sub-period</div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="height:300px"><canvas id="energyMixChart"></canvas></div>
+      <div class="card-source">IEA World Energy Balances · Our World in Data (Energy Institute Statistical Review of World Energy)</div>
+    </div>
+
+    <div class="card full" style="margin-bottom:14px">
+      <div class="card-header">
+        <div>
+          <div class="card-title">Renewable Share of Gross Final Energy with Policy Annotations, 1900–2024 (%)</div>
+          <div class="card-subtitle">Dashed lines mark verified policy events · Eurostat SDG_07_40 exact values for 2004–2023 · Zwentendorf 1978 marked as point annotation</div>
+        </div>
+      </div>
+      <div class="chart-wrap" style="height:260px"><canvas id="renewableShareChart"></canvas></div>
+      <div class="card-source">Eurostat SDG_07_40 (2004–2023 exact values) · IEA estimates pre-2004</div>
+    </div>
+
+    <!-- ── 1970 vs 2024 Mix Comparison (replaces pictogram) ── -->
+    <div class="section-header">
+      <span class="section-title">Energy Mix: 1970 vs. 2024</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="mix-compare-grid" style="margin-bottom:14px">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">1970 - Oil Era Peak</div>
+            <div class="card-subtitle">Oil and gas accounted for 52% of TPES; hydro was the only significant renewable</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:220px"><canvas id="mix1970Chart"></canvas></div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">2024 - Transition State</div>
+            <div class="card-subtitle">Renewable share 42% of gross final energy; wind and solar are now material contributors</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:220px"><canvas id="mix2024Chart"></canvas></div>
+      </div>
+    </div>
+    <div style="font-size:10px;color:var(--text-muted);margin-bottom:20px">Source: IEA World Energy Balances · Statistik Austria Energiebilanzen</div>
+
+    <!-- ── CO₂ + EU Comparison ─────────────────────────────── -->
+    <div class="section-header">
+      <span class="section-title">Emissions and EU Benchmarking</span>
+      <span class="section-rule"></span>
+    </div>
+    <div class="card-grid" style="margin-bottom:0">
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">CO₂ Emissions by Decade (Mt, total)</div>
+            <div class="card-subtitle">Peak decade 2000–2009 reflects high gas and transport demand; declines thereafter from efficiency and fuel switching</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="co2DecadeChart"></canvas></div>
+        <div class="card-source">EDGAR GHG v8 · Umweltbundesamt Austria (Umweltbundesamt.at)</div>
+      </div>
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <div class="card-title">Austria vs EU27 - Renewable Share (%)</div>
+            <div class="card-subtitle">Austria's structural advantage - dominated by Alpine hydro - has maintained a 10–20 pp lead over the EU27 average throughout the Eurostat series</div>
+          </div>
+        </div>
+        <div class="chart-wrap" style="height:240px"><canvas id="compareEuChart"></canvas></div>
+        <div class="card-source">Eurostat SDG_07_40 - both series are independently sourced; EU average is not derived from Austrian data</div>
+      </div>
+    </div>
+
+  </div><!-- /page -->
+
+  <footer class="page-footer">
+    Sources: IEA World Energy Balances ·
+    Eurostat SDG_07_40 (renewable energy share, gross final energy) ·
+    EDGAR GHG Database v8 ·
+    Umweltbundesamt Austria (national GHG inventory) ·
+    Statistik Austria Energiebilanzen ·
+    World Bank (NY.GDP.MKTP.CD; SP.POP.TOTL) ·
+    APG (Austrian Power Grid - wind, solar generation data) ·
+    Our World in Data / Energy Institute Statistical Review.<br>
+    Austria Energy Transition Capstone Project · Academic research use · Data range 1900–2024.
+  </footer>
+
+</div><!-- /main -->
+
+<script src="/static/js/charts.js"></script>
+</body>
+</html>

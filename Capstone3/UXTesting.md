@@ -1,9 +1,0 @@
-# UX Testing — Capstone 3
-
-## Issues Found and Fixed During Self-Review
-
-| # | Issue | Observation | Fix Applied | File / Location |
-|---|-------|------------|-------------|-----------------|
-| 1 | Country name truncation in bar chart | X-axis labels for countries with names longer than 12 characters (e.g. "Netherlands", "Czech Republic") were cut off in the horizontal bar chart on Dashboard 1, making the chart unreadable at default canvas size. | Added `maxRotation: 0` and set `ticks.callback` to truncate labels to 14 characters with ellipsis on the Chart.js x-axis config. Increased bottom padding from 20px to 40px in `.chart-container`. | `static/script.js` — `loadTopCountries()` function; `static/style.css` — `.chart-container` |
-| 2 | Leaflet tooltip persisting on Firefox | The choropleth map tooltip remained visible after the cursor left the country boundary on Firefox 124. The `mouseover` handler bound the tooltip but the `mouseout` handler was not firing consistently due to a z-index conflict with the tooltip layer itself. | Added explicit `layer.on('mouseout', function() { info.update(); })` inside the `onEachFeature` callback and set `pointer-events: none` on the tooltip overlay div in CSS. | `static/script.js` — `initChoropleth()` / `onEachFeature` callback |
-| 3 | KPI cards breaking to 2x2 grid too early | At viewport widths between 900px and 1024px, the 4-column KPI card row collapsed to a 2x2 grid, which caused the "Most Improved Country" card to display a country name in very large DM Serif Display font with no line wrapping, overflowing its container. | Changed the CSS grid breakpoint for `.kpi-row` from `@media (max-width: 768px)` to `@media (max-width: 960px)` and added `overflow: hidden; text-overflow: ellipsis; white-space: nowrap` to `.kpi-value` with a `max-width: 100%` constraint. | `static/style.css` — `.kpi-row` and `.kpi-value` responsive rules |

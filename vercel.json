@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "energy_transition_project/app.py",
+      "src": "Capstone3/app.py",
       "use": "@vercel/python"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "energy_transition_project/app.py"
+      "dest": "Capstone3/app.py"
     }
   ]
 }
