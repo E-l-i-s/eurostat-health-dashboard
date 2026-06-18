@@ -1,15 +1,8 @@
 {
-  "version": 2,
-  "builds": [
+  "rewrites": [
     {
-      "src": "Capstone3/app.py",
-      "use": "@vercel/python"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "Capstone3/app.py"
+      "source": "/(.*)",
+      "destination": "/api/index.py"
     }
   ]
 }

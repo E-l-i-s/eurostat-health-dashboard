@@ -247,6 +247,10 @@ def add_cors_headers(response):
 def index():
     return render_template('dashboard1_strategic.html')
 
+@app.route('/strategic')
+def strategic_redirect():
+    from flask import redirect, url_for
+    return redirect(url_for('index'))
 
 @app.route('/analytical')
 def analytical():
